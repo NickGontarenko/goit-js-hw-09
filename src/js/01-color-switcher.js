@@ -1,34 +1,26 @@
 const startBtnRef = document.querySelector('[data-start]');
-// console.log(startBtnRef);
 const stopBtnRef = document.querySelector('[data-stop]');
 // console.log(stopBtnRef);
-let isActiv = false;
 let timerId = null;
 
 startBtnRef.addEventListener('click', onStartChangeBodyBgc);
 stopBtnRef.addEventListener('click', onStopChangeBodyBgc);
-stopBtnRef.setAttribute('disabled', true);
+stopBtnRef.disabled = true;
 
 function onStartChangeBodyBgc() {
-  if (isActiv) {
-    return;
-  }
-
-  startBtnRef.setAttribute('disabled', true);
-  stopBtnRef.removeAttribute('disabled');
+  startBtnRef.disabled = true;
+  stopBtnRef.disabled = false;
   timerId = setInterval(() => {
     const randomColor = getRandomHexColor();
     console.log(randomColor);
     document.body.style.backgroundColor = randomColor;
   }, 1000);
-  isActiv = true;
 }
 
 function onStopChangeBodyBgc() {
   clearInterval(timerId);
-  isActiv = false;
-  startBtnRef.removeAttribute('disabled');
-  stopBtnRef.setAttribute('disabled', true);
+  startBtnRef.disabled = false;
+  stopBtnRef.disabled = true;
 }
 
 function getRandomHexColor() {
