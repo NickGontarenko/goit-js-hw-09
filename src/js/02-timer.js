@@ -48,7 +48,7 @@ function onСountdown() {
 
     if (countTime < 1000) {
       clearInterval(timerId);
-      Notify.success('Time is over');
+      Notify.success('Time is over !!!');
     }
   }, 1000);
 
