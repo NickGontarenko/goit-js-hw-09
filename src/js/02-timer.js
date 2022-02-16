@@ -30,7 +30,7 @@ const options = {
       selectedDate = selectedDates[0].getTime();
       startBtnRef.disabled = false;
       console.dir(selectedDate);
-      return Notify.success('viridi lux');
+      return Notify.success('Selected date is correct');
     }
   },
 };
@@ -47,8 +47,8 @@ function onСountdown() {
     uptadaClockface({ days, hours, minutes, seconds });
 
     if (countTime < 1000) {
-      clearInterval(timerId);
       Notify.success('Time is over !!!');
+      clearInterval(timerId);
     }
   }, 1000);
 
