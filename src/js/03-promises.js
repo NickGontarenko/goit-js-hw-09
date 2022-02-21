@@ -14,24 +14,23 @@ function onSubmit(evt) {
 
   for (let i = 1; i <= amountRef; i++) {
     let position = i;
+
     formBtnRef.disabled = true;
 
     createPromise(position, firstDelayRef)
       .then(({ position, delay }) => {
-        // console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+        console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
         Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
+
+        if (position == amountRef) {
+          formBtnRef.disabled = false;
+          return;
+        }
       })
       .catch(({ position, delay }) => {
-        // console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+        console.log(`❌ Rejected promise ${position} in ${delay}ms`);
         Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
       });
-
-    setTimeout(() => {
-      if (position == amountRef) {
-        formBtnRef.disabled = false;
-        return;
-      }
-    }, firstDelayRef);
 
     firstDelayRef += delayStepRef;
   }
